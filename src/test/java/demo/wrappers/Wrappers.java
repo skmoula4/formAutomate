@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,4 +17,27 @@ public class Wrappers {
     /*
      * Write your selenium wrappers here
      */
+    static  WebDriverWait wait;
+    public static void enterText(WebDriver driver,By locator, String text){
+        wait= new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+        WebElement element=driver.findElement(locator);
+       
+        element.sendKeys(text);    
+    }
+
+    public static void click(WebDriver driver, By locator){
+        wait= new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        WebElement element=driver.findElement(locator);
+        element.click();
+    }
+    public static  String getText(WebDriver driver, By locator){
+            wait= new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement element=driver.findElement(locator);
+        return element.getText();
+
+    }
 }
