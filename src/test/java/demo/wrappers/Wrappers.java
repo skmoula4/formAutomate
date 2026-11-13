@@ -19,25 +19,41 @@ public class Wrappers {
      */
     static  WebDriverWait wait;
     public static void enterText(WebDriver driver,By locator, String text){
+        try{
         wait= new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
         WebElement element=driver.findElement(locator);
        
         element.sendKeys(text);    
+        }catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
     }
 
     public static void click(WebDriver driver, By locator){
+        try{
         wait= new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement element=driver.findElement(locator);
         element.click();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
     public static  String getText(WebDriver driver, By locator){
+       try{
             wait= new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         WebElement element=driver.findElement(locator);
         return element.getText();
+        }catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
 
     }
 }
